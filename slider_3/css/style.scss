@@ -1,0 +1,41 @@
+.wrapper {
+    width: 600px;
+    margin: 0 auto;
+}
+
+.slider-box {
+    overflow: hidden;
+    background-color: pink;
+}
+
+.slider-line {
+    display: flex;
+    background-color: yellow;
+    transition: .2s;
+}
+
+.slider-item {
+    height: 300px;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.slider-item:nth-child(3n+1) {
+    background-color: red;
+}
+
+.slider-item:nth-child(3n+2) {
+    background-color: grey;
+}
+
+.slider-item:nth-child(3n+3) {
+    background-color: blue;
+}
+
+.slider-btn {
+    margin-top: 50px;
+    text-align: center;
+}
