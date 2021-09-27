@@ -1,0 +1,33 @@
+.companies {
+    margin: 200px auto;
+    max-width: 1200px
+}
+
+.companies-wrapper {
+    text-align: center;
+}
+
+.companies h2 {
+    color: red;
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 50px;
+}
+
+.companies-hor {
+    display: flex;
+    /* justify-content: center; */
+    /* flex-wrap: wrap; */
+    margin: 70px 0;
+}
+
+.companies-hor-item {
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+}
+
+.companies-hor-item img {
+    max-width: 100%;
+    max-height: 100%;
+}
