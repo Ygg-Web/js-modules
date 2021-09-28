@@ -24,8 +24,8 @@
                     <div class="companies-hor-item"><img src="./img/logo3.jpg" alt=""></div>
                     <div class="companies-hor-item"><img src="./img/logo2.jpg" alt=""></div>
                 </div>
-                <button id="test-left"> < </button>
-                <button id="test-right"> > </button>
+                <!-- <button id="test-left"> < </button>
+                <button id="test-right"> > </button> -->
             </div>
         </div>
     </section>
@@ -34,8 +34,10 @@
         const carousel = new SliderCarousel({
             main: '.companies-wrapper',
             wrap: '.companies-hor',
-            next: '.test-right',
-            pre: '.test-left'
+            // next: '#test-right',
+            // prev: '#test-left',
+            slidesToShow: 4,
+            infinity: true,
         });
         console.log(carousel);
         carousel.init();

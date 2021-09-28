@@ -1,23 +1,24 @@
 .companies {
     margin: 200px auto;
-    max-width: 1200px
-}
-
-.companies-wrapper {
+    max-width: 1200px;
     text-align: center;
 }
 
 .companies h2 {
     color: red;
-    text-align: center;
     font-size: 50px;
     margin-bottom: 50px;
 }
 
+body .underline {
+    display: inline-block;
+    border-bottom: 1px solid #19b5fe;
+    width: 38rem;
+    margin-bottom: 3rem;
+}
+
 .companies-hor {
     display: flex;
-    /* justify-content: center; */
-    /* flex-wrap: wrap; */
     margin: 70px 0;
 }
 
