@@ -1,4 +1,44 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 .modal {}
+
+.modal.open .modal__inner,
+.modal.open .modal__window {
+    opacity: 1;
+    z-index: 1000;
+}
+
+.modal.hide .modal__inner,
+.modal.hide .modal__window {
+    opacity: 1;
+    z-index: 100;
+}
+
+.modal.open .modal__window {
+    transform: translateY(200px);
+}
+
+.modal.open .modal__inner {
+    background: rgba(0, 0, 0, .5);
+}
+
+.modal.hide .modal__window {
+    transform: translateY(-200px);
+}
+
+.modal.hide .modal__inner {
+    background: rgba(0, 0, 0, .5);
+}
+
+.modal__inner,
+.modal__window {
+    opacity: 0;
+    z-index: -1;
+}
 
 .modal__inner {
     position: fixed;
@@ -6,7 +46,8 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 0);
+    transition: background .2s ease-in;
 }
 
 .modal__window {
@@ -15,6 +56,8 @@
     border-radius: 5px;
     background: #fff;
     margin: 0 auto;
+    transform: translateY(-200px);
+    transition: transform .2s ease-in;
 }
 
 .modal__header {
@@ -52,6 +95,7 @@
 }
 
 .btns button {
+    padding: 15px 20px;
     display: block;
     margin: 8px;
     font-size: 1.5rem;
