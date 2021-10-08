@@ -1,16 +1,17 @@
 const lib = {};
 
 function _createModal(options) {
+    const DEFAULT_WIDTH = '600px';
     modal = document.createElement('div');
     modal.classList.add('modal');
     modal.insertAdjacentHTML('afterbegin', `
     <div class="modal__inner">
-    <div class="modal__window">
+    <div class="modal__window" style="width:${options.width || DEFAULT_WIDTH}">
         <div class="modal__header">
-            <span class="modal__title">Title Modal JS</span>
-            <span class="modal__close">&times;</span>
+            <span class="modal__title">${options.title || 'Title Modal JS'}</span>
+            ${options.closable ? '<span class="modal__close">&times;</span>' : ''}
         </div>
-        <div class="modal__body"></div>
+        <div class="modal__body">${options.content || ''}</div>
         <div class="modal__footer">
             <div class="btns">
                 <button>Ok</button>
@@ -45,7 +46,14 @@ lib.modal = function(options) {
     }
 }
 
-const myModal = lib.modal();
+const myModal = lib.modal({
+    title: 'Модальное окно JS',
+    closable: true,
+    content: `
+    <p> Lorem, ipsum dolor sit amet </p> 
+    <p> Lorem, ipsum dolor sit amet </p>`,
+    width: '400px',
+});
 
 
 // параметры options
