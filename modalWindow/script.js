@@ -5,11 +5,11 @@ function _createModal(options) {
     modal = document.createElement('div');
     modal.classList.add('modal');
     modal.insertAdjacentHTML('afterbegin', `
-    <div class="modal__inner">
+    <div class="modal__inner" data-close="true">
     <div class="modal__window" style="width:${options.width || DEFAULT_WIDTH}">
         <div class="modal__header">
             <span class="modal__title">${options.title || 'Title Modal JS'}</span>
-            ${options.closable ? '<span class="modal__close">&times;</span>' : ''}
+            ${options.closable ? '<span class="modal__close" data-close="true">&times;</span>' : ''}
         </div>
         <div class="modal__body">${options.content || ''}</div>
         <div class="modal__footer">
@@ -29,21 +29,31 @@ lib.modal = function(options) {
     const ANIMATION_SPEED = 200
     const $modal = _createModal(options)
     let closing = false
-
-    return {
-        open() {
-            !closing && $modal.classList.add('open')
-        },
-        close() {
-            closing = true
-            $modal.classList.remove('open')
-            $modal.classList.add('hide')
-            setTimeout(() => {
-                $modal.classList.remove('hide')
-                closing = false
-            }, ANIMATION_SPEED)
-        }
+const modal = {
+    open() {
+        !closing && $modal.classList.add('open')
+    },
+    close() {
+        closing = true
+        $modal.classList.remove('open')
+        $modal.classList.add('hide')
+        setTimeout(() => {
+            $modal.classList.remove('hide')
+            closing = false
+        }, ANIMATION_SPEED)
+    },
+    destroy() {
+        $modal.parentNode.removeChild($modal);
     }
+}
+
+    $modal.addEventListener('click', event => {
+    console.log(event.target.dataset.close);
+    if (event.target.dataset.close) {
+    modal.close();
+    }
+})
+    return modal 
 }
 
 const myModal = lib.modal({
