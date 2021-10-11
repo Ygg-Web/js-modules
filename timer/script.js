@@ -32,19 +32,21 @@ const setTimer = (selector, endtime) => {
         seconds = document.querySelector('#s'),
         timeInterval = setInterval(updateClock, 1000);
 
+    updateClock();
 
+    function updateClock() {
+        const time = getTimeRemaining(endtime);
+
+        days.innerText = getZero(time.days);
+        hours.innerText = getZero(time.hours);
+        minutes.innerText = getZero(time.minutes);
+        seconds.innerText = getZero(time.seconds);
+
+        if (time.period < 0) {
+            timer.innerText = 'Время вышло';
+            clearInterval(timeInterval);
+        }
+    }
 }
 
-// if (period < 0) {
-
-//     document.querySelector('#group').innerText = 'Время вышло';
-
-// } else {
-//     document.getElementById('d').innerText = getZero(days);
-//     document.getElementById('h').innerText = getZero(hours);
-//     document.getElementById('m').innerText = getZero(minutes);
-//     document.getElementById('s').innerText = getZero(seconds);
-// }
-getTimeRemaining(timeOfAction);
-
-// setInterval(getTimeRemaining, 1000);
+setTimer('#timer', timeOfAction);
