@@ -32,9 +32,9 @@ const setTimer = (selector, endtime) => {
         seconds = document.querySelector('#s'),
         timeInterval = setInterval(updateClock, 1000);
 
-    updateClock();
+    updateTimer();
 
-    function updateClock() {
+    function updateTimer() {
         const time = getTimeRemaining(endtime);
 
         days.innerText = getZero(time.days);
