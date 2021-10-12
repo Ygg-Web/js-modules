@@ -4,43 +4,43 @@
     padding: 0;
 }
 
-.modal {}
+.nmodal {}
 
-.modal.open .modal__inner,
-.modal.open .modal__window {
+.nmodal.open .nmodal__inner,
+.nmodal.open .nmodal__window {
     opacity: 1;
     z-index: 1000;
 }
 
-.modal.hide .modal__inner,
-.modal.hide .modal__window {
+.nmodal.hide .nmodal__inner,
+.nmodal.hide .nmodal__window {
     opacity: 1;
     z-index: 100;
 }
 
-.modal.open .modal__window {
+.nmodal.open .nmodal__window {
     transform: translateY(200px);
 }
 
-.modal.open .modal__inner {
+.nmodal.open .nmodal__inner {
     background: rgba(0, 0, 0, .5);
 }
 
-.modal.hide .modal__window {
+.nmodal.hide .nmodal__window {
     transform: translateY(-200px);
 }
 
-.modal.hide .modal__inner {
+.nmodal.hide .nmodal__inner {
     background: rgba(0, 0, 0, .5);
 }
 
-.modal__inner,
-.modal__window {
+.nmodal__inner,
+.nmodal__window {
     opacity: 0;
     z-index: -1;
 }
 
-.modal__inner {
+.nmodal__inner {
     position: fixed;
     top: 0;
     left: 0;
@@ -50,7 +50,7 @@
     transition: background .2s ease-in;
 }
 
-.modal__window {
+.nmodal__window {
     position: relative;
     width: 600px;
     border-radius: 5px;
@@ -60,17 +60,17 @@
     transition: transform .2s ease-in;
 }
 
-.modal__header {
+.nmodal__header {
     padding: 10px;
     display: flex;
     justify-content: center;
 }
 
-.modal__title {
+.nmodal__title {
     font-size: 2rem;
 }
 
-.modal__close {
+.nmodal__close {
     position: absolute;
     top: 8px;
     right: 10px;
@@ -80,19 +80,20 @@
     border: none;
 }
 
-.modal__body {
+.nmodal__body {
     font-size: 2rem;
     padding: 10px;
 }
 
-.modal__footer {
+.nmodal__footer {
     font-size: 2rem;
     padding: 5px 10px;
     display: flex;
     justify-content: end;
 }
 
-.btn {
+
+/* .btn {
     padding: 15px 20px;
     display: block;
     margin: 8px;
@@ -124,4 +125,4 @@
 .btn-danger {
     background: rgb(199, 60, 67);
     color: #fff;
-}
+} */

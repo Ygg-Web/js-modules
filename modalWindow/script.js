@@ -12,7 +12,7 @@ function _createModalFooter(buttons = []) {
     }
 
     const wrap = document.createElement('div')
-    wrap.classList.add('modal__footer')
+    wrap.classList.add('nmodal__footer')
 
     buttons.forEach(btn => {
         const $btn = document.createElement('button')
@@ -31,15 +31,15 @@ function _createModalFooter(buttons = []) {
 function _createModal(options) {
     const DEFAULT_WIDTH = '600px'
     modal = document.createElement('div')
-    modal.classList.add('modal')
+    modal.classList.add('nmodal')
     modal.insertAdjacentHTML('afterbegin', `
-    <div class="modal__inner" data-close="true">
-    <div class="modal__window" style="width:${options.width || DEFAULT_WIDTH}">
-        <div class="modal__header">
-            <span class="modal__title">${options.title || 'Title Modal JS'}</span>
-            ${options.closable ? '<span class="modal__close" data-close="true">&times;</span>' : ''}
+    <div class="nmodal__inner" data-close="true">
+    <div class="nmodal__window" style="width:${options.width || DEFAULT_WIDTH}">
+        <div class="nmodal__header">
+            <span class="nmodal__title">${options.title || 'Title Modal JS'}</span>
+            ${options.closable ? '<span class="nmodal__close" data-close="true">&times;</span>' : ''}
         </div>
-        <div class="modal__body" data-content>${options.content || ''}</div>
+        <div class="nmodal__body" data-content>${options.content || ''}</div>
     </div>
     </div>
 `)
@@ -116,16 +116,20 @@ const myModal = lib.modal({
         }
     ]
 });
+// ----------------------------------------------------------------------------------
+
+const cars = [
+    { id: 1, title: 'Audi', price: 3000, img: 'https://i.pinimg.com/originals/49/ef/c6/49efc635a5f90b9c0547c071be9d717f.jpg' },
+    { id: 2, title: 'Volkswagen', price: 2000, img: 'https://rulikolesa.ru/wp-content/uploads/2017/02/maxresdefault-4.jpg' },
+    { id: 3, title: 'MercedesBenz', price: 5000, img: 'https://a.d-cd.net/mdAAAgN4GeA-1920.jpg' }
+]
 
 
-// параметры options
-// title:String передавать в модал титул
-// closable: Boolean если тру крестик показывается если фолс - нет крестика
-// content String какой-то контент попадает в боди
-// width String ширина модалки
-// destroy () void удалять из дом дерева модал и удалять все слушатели
-// при нажатии на крестик окно закрывается
-// и на подложку тоже
-// -----------------
+/* 
+1. Показать цену в модалке (и это д б 1 модалка с картинкой на которую тыкнули)
+2. Динамически на основе массива вывести список карточек
+3. Модалка для удаления с 2мя кнопками согласени и отмена
 
-// публичный метод setContent(html-string) void вызывая данный метод динамически меняется содержимое модал окна
+-----------------
+4. на основе lib.modal нужно сделать другой плагин lib.confirm
+*/
