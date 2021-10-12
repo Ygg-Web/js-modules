@@ -88,14 +88,11 @@
 .modal__footer {
     font-size: 2rem;
     padding: 5px 10px;
-}
-
-.btns {
     display: flex;
     justify-content: end;
 }
 
-.btns button {
+.btn {
     padding: 15px 20px;
     display: block;
     margin: 8px;
@@ -111,10 +108,20 @@
     transition: background .2s ease-out;
 }
 
-.btns button:hover {
+.btn:hover {
     background: rgb(88, 88, 233);
 }
 
-.btns button:last-child {
+.btn:last-child {
     margin-right: 0;
+}
+
+.btn-primary {
+    background: rgb(60, 172, 45);
+    color: #fff;
+}
+
+.btn-danger {
+    background: rgb(199, 60, 67);
+    color: #fff;
 }
