@@ -131,7 +131,7 @@ const toHTML = card => `
             <div class="card-body">
                 <h5 class="card-title">${card.title}</h5>
                 <a href="#" class="btn btn-primary" data-btn="price" data-id="${card.id}">Посмотреть цену</a>
-                <a href="#" class="btn btn-danger">Удалить</a>
+                <a href="#" class="btn btn-danger" data-btn="remove" data-id="${card.id}">Удалить</a>
             </div>
         </div>
     </div>`
@@ -159,13 +159,35 @@ const priceModal = lib.modal({
     width: '500px',
     footerButtons: [{
         text: 'Закрыть',
-        type: 'primary', //стиль css
+        type: 'primary',
         handler() {
             priceModal.close()
         }
     }]
-});
+})
 
+const confirmModal = lib.modal({
+    title: 'Вы уверены?',
+    closable: true,
+    width: '500px',
+    footerButtons: [{
+            text: 'Отменить',
+            type: 'secondary',
+            handler() {
+                confirmModal.close()
+
+            }
+        },
+        {
+            text: 'Удалить',
+            type: 'danger',
+            handler() {
+                confirmModal.close()
+
+            }
+        }
+    ]
+});
 document.addEventListener('click', event => {
     event.preventDefault()
     const btnType = event.target.dataset.btn
@@ -179,6 +201,12 @@ document.addEventListener('click', event => {
         <p>Цена на ${card.title}: <strong>${card.price}$</strong></p>
         `)
         priceModal.open()
+    } else if (btnType === 'remove') {
 
+        confirmModal.setContent(`
+        <p>Вы удаляете карточку:<strong> ${card.title} </strong></p>
+        `)
+        confirmModal.open()
     }
+
 })
