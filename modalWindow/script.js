@@ -118,11 +118,23 @@ const myModal = lib.modal({
 });
 // ----------------------------------------------------------------------------------
 
-const cars = [
+const cards = [
     { id: 1, title: 'Audi', price: 3000, img: 'https://i.pinimg.com/originals/49/ef/c6/49efc635a5f90b9c0547c071be9d717f.jpg' },
     { id: 2, title: 'Volkswagen', price: 2000, img: 'https://rulikolesa.ru/wp-content/uploads/2017/02/maxresdefault-4.jpg' },
     { id: 3, title: 'MercedesBenz', price: 5000, img: 'https://a.d-cd.net/mdAAAgN4GeA-1920.jpg' }
 ]
+
+const toHTML = card => `
+    <div class="col">
+        <div class="card">
+            <img class="card-img-top" style="height: 500px;" src="${card.img}" alt="${cards.title}">
+            <div class="card-body">
+                <h5 class="card-title">${card.title}</h5>
+                <a href="#" class="btn btn-primary" data-btn="price">Посмотреть цену</a>
+                <a href="#" class="btn btn-danger">Удалить</a>
+            </div>
+        </div>
+    </div>`
 
 
 /* 
@@ -133,3 +145,10 @@ const cars = [
 -----------------
 4. на основе lib.modal нужно сделать другой плагин lib.confirm
 */
+
+function render() {
+    const html = cards.map(toHTML).join('')
+    document.querySelector('#cards').innerHTML = html
+}
+
+render()
