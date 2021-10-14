@@ -130,7 +130,7 @@ const toHTML = card => `
             <img class="card-img-top" style="height: 500px;" src="${card.img}" alt="${cards.title}">
             <div class="card-body">
                 <h5 class="card-title">${card.title}</h5>
-                <a href="#" class="btn btn-primary" data-btn="price">Посмотреть цену</a>
+                <a href="#" class="btn btn-primary" data-btn="price" data-id="${card.id}">Посмотреть цену</a>
                 <a href="#" class="btn btn-danger">Удалить</a>
             </div>
         </div>
@@ -152,3 +152,33 @@ function render() {
 }
 
 render()
+
+const priceModal = lib.modal({
+    title: 'Цена на Товар',
+    closable: true,
+    width: '500px',
+    footerButtons: [{
+        text: 'Закрыть',
+        type: 'primary', //стиль css
+        handler() {
+            priceModal.close()
+        }
+    }]
+});
+
+document.addEventListener('click', event => {
+    event.preventDefault()
+    const btnType = event.target.dataset.btn
+    const id = +event.target.dataset.id
+
+    const card = cards.find(f => f.id === id)
+
+    if (btnType === 'price') {
+
+        priceModal.setContent(`
+        <p>Цена на ${card.title}: <strong>${card.price}$</strong></p>
+        `)
+        priceModal.open()
+
+    }
+})
