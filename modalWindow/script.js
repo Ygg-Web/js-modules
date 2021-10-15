@@ -69,6 +69,9 @@ lib.modal = function(options) {
             setTimeout(() => {
                 $modal.classList.remove('hide')
                 closing = false
+                if (typeof options.onClose === 'function') {
+                    options.onClose()
+                }
             }, ANIMATION_SPEED)
         }
     }
@@ -118,7 +121,7 @@ const myModal = lib.modal({
 });
 // ----------------------------------------------------------------------------------
 
-const cards = [
+let cards = [
     { id: 1, title: 'Audi', price: 3000, img: 'https://i.pinimg.com/originals/49/ef/c6/49efc635a5f90b9c0547c071be9d717f.jpg' },
     { id: 2, title: 'Volkswagen', price: 2000, img: 'https://rulikolesa.ru/wp-content/uploads/2017/02/maxresdefault-4.jpg' },
     { id: 3, title: 'MercedesBenz', price: 5000, img: 'https://a.d-cd.net/mdAAAgN4GeA-1920.jpg' }
@@ -166,34 +169,46 @@ const priceModal = lib.modal({
     }]
 })
 
-const confirmModal = lib.modal({
-    title: 'Вы уверены?',
-    closable: true,
-    width: '500px',
-    footerButtons: [{
-            text: 'Отменить',
-            type: 'secondary',
-            handler() {
-                confirmModal.close()
+lib.confirm = function(options) {
+    return new Promise(((resolve, reject) => {
+        const modal = lib.modal({
+            title: options.title,
+            width: '500px',
+            closable: false,
+            content: options.content,
+            onClose() {
+                modal.destroy()
+            },
+            footerButtons: [{
+                    text: 'Отменить',
+                    type: 'secondary',
+                    handler() {
+                        modal.close()
+                        reject()
+                    }
+                },
+                {
+                    text: 'Удалить',
+                    type: 'danger',
+                    handler() {
+                        modal.close()
+                        resolve()
+                    }
+                }
+            ]
+        })
 
-            }
-        },
-        {
-            text: 'Удалить',
-            type: 'danger',
-            handler() {
-                confirmModal.close()
+        setTimeout(() => modal.open(), 100)
+    }))
+}
 
-            }
-        }
-    ]
-});
+
 document.addEventListener('click', event => {
     event.preventDefault()
     const btnType = event.target.dataset.btn
     const id = +event.target.dataset.id
 
-    const card = cards.find(f => f.id === id)
+    const card = cards.find(c => c.id === id)
 
     if (btnType === 'price') {
 
@@ -203,10 +218,18 @@ document.addEventListener('click', event => {
         priceModal.open()
     } else if (btnType === 'remove') {
 
-        confirmModal.setContent(`
-        <p>Вы удаляете карточку:<strong> ${card.title} </strong></p>
-        `)
-        confirmModal.open()
+        lib.confirm({
+                title: 'Вы уверены',
+                content: `<p> Вы удаляете карточку: <strong> ${card.title} </strong></p>`
+            })
+            .then(() => {
+                console.log('Remove')
+                cards = cards.filter(c => c.id !== id)
+                render()
+            })
+            .catch(() => {
+                console.log('Cancel')
+            })
     }
 
 })
