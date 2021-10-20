@@ -7,7 +7,7 @@ body {
     font-family: 'Muli', sans-serif;
     overflow: hidden;
     margin: 0;
-    background: #111;
+    background: #faf0be;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -25,7 +25,7 @@ body {
     border-radius: 20px;
     margin: 10px;
     cursor: pointer;
-    color: #fff;
+    color: #dbb096;
     flex: 1;
     background-size: cover;
     background-position: center;
