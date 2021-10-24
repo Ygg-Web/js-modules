@@ -50,12 +50,21 @@ function finishGame() {
 }
 
 function createRandomCircle() {
-    const circle = document.createElement('div')
-    circle.classList.add('circle')
-    circle.style.width = '15px'
-    circle.style.height = '15px'
+    const circle = document.createElement('div'),
+        size = getRandomNumber(10, 60),
+        { width, height } = board.getBoundingClientRect(),
+        x = getRandomNumber(0, width - size),
+        y = getRandomNumber(0, height - size)
 
+    circle.classList.add('circle')
+    circle.style.width = `${size}px`
+    circle.style.height = `${size}px`
+    circle.style.top = `${y}px`
+    circle.style.left = `${x}px`
 
     board.append(circle)
+}
 
+function getRandomNumber(min, max) {
+    return Math.round(Math.random() * (max - min) + min)
 }
