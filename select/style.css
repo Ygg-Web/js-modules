@@ -36,6 +36,7 @@
     -ms-flex-align: center;
     align-items: center;
     padding: 0 1rem;
+    cursor: pointer;
 }
 
 .select__dropdown {
@@ -50,6 +51,24 @@
     overflow-y: auto;
     -webkit-box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
     box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.select__list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.select__item {
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.select__item:hover {
+    background-color: #eee;
+    cursor: pointer;
+    -webkit-transition: .15s background-color;
+    transition: .15s background-color;
 }
 
 
