@@ -1,54 +1,56 @@
 .app {
-  padding: 5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+    padding: 5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .wrap {
-  width: 500px;
+    width: 500px;
 }
 
 .select {
-  width: 100%;
-  position: relative;
+    width: 100%;
+    position: relative;
 }
 
 .select.open .select__dropdown {
-  display: block;
+    display: block;
 }
 
 .select.open .select__input {
-  border-bottom: none;
+    border-bottom: none;
 }
 
 .select__input {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  height: 46px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 0 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 46px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0 1rem;
 }
 
 .select__dropdown {
-  display: none;
-  position: absolute;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  top: 46px;
-  left: 0;
-  right: 0;
-  max-height: 200px;
-  overflow-y: auto;
-  -webkit-box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
-          box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    top: 46px;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    -webkit-box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
 }
+
+
 /*# sourceMappingURL=style.css.map */
