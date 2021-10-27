@@ -3,12 +3,12 @@ const getTemplate = (data = [], placeholder) => {
 
     const items = data.map(item => {
         return `
-        <li class = "select__item"> ${item.value} </li>
+        <li class = "select__item" data-type="item" data-id=${item.id} >  ${item.value} </li>
         `
     })
     return `
     <div class="select__input" data-type="input">
-            <span>${placeholder ?? 'Текст по умолчанию'}</span>
+            <span data-type="value">${placeholder ?? 'Текст по умолчанию'}</span>
             <i class="fa fa-chevron-down" data-type="arrow" aria-hidden="true"></i></div>
         <div class="select__dropdown">
         <ul class="select__list">
@@ -21,6 +21,7 @@ class Select {
     constructor(selector, options) {
         this.elem = document.querySelector(selector)
         this.options = options
+        this.selectedId = null
 
 
         this.render()
@@ -42,10 +43,21 @@ class Select {
         const { type } = event.target.dataset
         if (type === 'input') {
             this.toggle()
+        } else if (type === 'item') {
+            const id = event.target.dataset.id
+            this.select(id)
         }
     }
     get isOpen() {
         return this.elem.classList.contains('open')
+    }
+
+    get current() {
+        return this.options.data.find(item => item.id === this.selectedId)
+    }
+
+    select(id) {
+        this.selectedId = id
     }
 
     toggle() {
