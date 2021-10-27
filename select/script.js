@@ -2,7 +2,7 @@ const getTemplate = () => {
     return `
     <div class="select__input" data-type="input">
     <span>Hello</span>
-    <i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+    <i class="fa fa-chevron-down" data-type="arrow" aria-hidden="true"></i></div>
     <div class="select__dropdown">
     <ul class="select__list">
         <li class="select__item">123</li>
@@ -31,6 +31,7 @@ class Select {
     setup() {
         this.clickHandler = this.clickHandler.bind(this)
         this.elem.addEventListener('click', this.clickHandler)
+        this.arrow = this.elem.querySelector('[data-type="arrow"]')
     }
 
     clickHandler(event) {
@@ -49,10 +50,14 @@ class Select {
 
     open() {
         this.elem.classList.add('open')
+        this.arrow.classList.remove('fa-chevron-down')
+        this.arrow.classList.add('fa-chevron-up')
     }
 
     close() {
         this.elem.classList.remove('open')
+        this.arrow.classList.add('fa-chevron-down')
+        this.arrow.classList.remove('fa-chevron-up')
     }
 
     destroy() {
