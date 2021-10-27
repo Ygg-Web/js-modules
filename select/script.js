@@ -1,32 +1,36 @@
-const getTemplate = () => {
+const getTemplate = (data = [], placeholder) => {
+    // const text = placeholder ? ? 'Текст по умолчанию'
+
+    const items = data.map(item => {
+        return `
+        <li class = "select__item"> ${item.value} </li>
+        `
+    })
     return `
     <div class="select__input" data-type="input">
-    <span>Hello</span>
-    <i class="fa fa-chevron-down" data-type="arrow" aria-hidden="true"></i></div>
-    <div class="select__dropdown">
-    <ul class="select__list">
-        <li class="select__item">123</li>
-        <li class="select__item">123 </li>
-        <li class="select__item">123 </li>
-        <li class="select__item">123 </li>
-        <li class="select__item">123 </li>
-        <li class="select__item">123 </li>
-
-    </ul>
-</div>`
+            <span>${placeholder ?? 'Текст по умолчанию'}</span>
+            <i class="fa fa-chevron-down" data-type="arrow" aria-hidden="true"></i></div>
+        <div class="select__dropdown">
+        <ul class="select__list">
+            ${items.join('')}    
+        </ul>
+    </div>`
 }
 
 class Select {
     constructor(selector, options) {
         this.elem = document.querySelector(selector)
+        this.options = options
+
 
         this.render()
         this.setup()
     }
 
     render() {
+        const { placeholder, data } = this.options
         this.elem.classList.add('select')
-        this.elem.innerHTML = getTemplate()
+        this.elem.innerHTML = getTemplate(data, placeholder)
     }
     setup() {
         this.clickHandler = this.clickHandler.bind(this)
@@ -67,7 +71,16 @@ class Select {
 
 
 const select = new Select('#select', {
+    placeholder: 'Выбери пожалуйста элемент',
+    data: [
+        { id: '1', value: 'React' },
+        { id: '2', value: 'Angular' },
+        { id: '3', value: 'Vue' },
+        { id: '4', value: 'React Native' },
+        { id: '5', value: 'Next' },
+        { id: '6', value: 'Nest' }
 
+    ]
 })
 
 window.s = select
