@@ -12,6 +12,7 @@ const getTemplate = (data = [], placeholder, selectedId) => {
         `
     })
     return `
+    <div class="select__backdrop" data-type="backdrop" ></div>
     <div class="select__input" data-type="input">
             <span data-type="value">${text}</span>
             <i class="fa fa-chevron-down" data-type="arrow" aria-hidden="true"></i></div>
@@ -43,8 +44,6 @@ class Select {
         this.elem.addEventListener('click', this.clickHandler)
         this.arrow = this.elem.querySelector('[data-type="arrow"]')
         this.value = this.elem.querySelector('[data-type="value"]')
-
-
     }
 
     clickHandler(event) {
@@ -54,6 +53,8 @@ class Select {
         } else if (type === 'item') {
             const id = event.target.dataset.id
             this.select(id)
+        } else if (type === 'backdrop') {
+            this.close()
         }
     }
     get isOpen() {
@@ -69,6 +70,9 @@ class Select {
         this.value.textContent = this.current.value
         this.elem.querySelectorAll('[data-type="item"]').forEach(item => item.classList.remove('selected'))
         this.elem.querySelector(`[data-id="${id}"]`).classList.add('selected')
+
+        this.options.onSelect ? this.options.onSelect(this.current) : null
+
         this.close()
     }
 
@@ -90,6 +94,7 @@ class Select {
 
     destroy() {
         this.elem.removeEventListener('click', this.clickHandler)
+        this.elem.innerHTML = ''
     }
 }
 
@@ -105,7 +110,10 @@ const select = new Select('#select', {
         { id: '5', value: 'Next' },
         { id: '6', value: 'Nest' }
 
-    ]
+    ],
+    onSelect(item) {
+        console.log('Selected Item', item)
+    }
 })
 
 window.s = select
